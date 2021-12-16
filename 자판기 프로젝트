@@ -1,0 +1,270 @@
+#include <stdio.h>
+
+#include <windows.h>
+
+#define TRUE 1
+
+#define Coca 1500
+
+#define Pepsi 1200
+
+#define Fanta 1300
+
+#define Hotsix 2000
+
+#define Monster 2200
+
+#define Pocari 1000
+
+#define Power 1100
+
+
+
+int MenuChoice; //메뉴선택
+int Money; //투입할 금액
+int Number; //음료개수
+int Hap; //음료개수와 투입도니 돈의 합
+int Nameozi; //거스름 돈
+int coca = 10;
+int pepsi = 10;
+int fanta = 10;
+int hotsix = 10;
+int monster = 10;
+int pocari = 10;
+int power = 10;
+
+int MainMenu()
+{
+    while (TRUE) { //while문을 이용해 반복시킨다.
+        printf(" ★음료수 자판기★ \n");
+        printf(" 동전을 투입하세요. \n");
+        printf(" ────────────────────────────\n");
+        printf(" 투입액(천원에서 만원까지 투입)>> ");
+        scanf("%d", &Money); //사용자로부터 투입할 금액을 입력받는다
+        if ((Money < 1000) || (Money > 10000)) {  //조건문 if문을 이용해 조건에 해당되는 입력 값을 받는다.
+            printf("잘못 투입되었습니다.\n");
+            system("cls");   //화면 갱신 코드
+            continue;
+        }
+        else {
+            system("cls");
+            printf("%d원 투입되었습니다.\n\n", Money);
+            return 0;
+        }
+    }
+}
+
+
+int Menu()
+{
+    while (TRUE) { //while문을 이용해 반복시킨다.
+        printf(" ★★★음료수 자판기★★★ \n");
+        printf("┌────────────────────────┐\n");
+        printf("│ 1. 코카콜라(1500원)    │\n");
+        printf("│ 2. 펩시콜라(1200원)    │\n");
+        printf("│ 3. 환 타(1300원)       │\n");
+        printf("│ 4. 핫식스(2000원)      │\n");
+        printf("│ 5. 몬스터(2200원)      │\n");
+        printf("│ 6. 포카리스웨트(1000원)│\n");
+        printf("│ 7. 파워에이드(1100원)  │\n");
+        printf("└────────────────────────┘\n\n");
+        printf("품목선택>> ");
+        scanf("%d", &MenuChoice);
+        if ((MenuChoice < 0) || (MenuChoice > 8)) {
+            //조건문 if문을 이용해 조건에 해당되는 입력 값을 받는다.
+            printf("잘못 입력하셨습니다.\n");
+            continue;
+        }
+        fflush(stdin);   //입력 버퍼를 지우는 함수
+        printf("품목개수>> ");
+        scanf("%d", &Number);
+        printf("\n");
+        //조건문 if문을 이용해 조건에 해당되는 입력 값을 받는다.
+        if (Number < 0) {
+            printf("잘못 개수 입력하셨습니다.\n");
+            continue;
+        }
+
+        switch (MenuChoice) {
+
+        case 1:
+            if (coca == 0) {
+                printf("코카콜라  재고가 부족합니다.\n");
+                continue;
+            }
+            else if ((Coca * Number) > Money) {
+                printf("돈이 부족합니다.\n");
+                continue;
+            }
+            else {
+                Hap = Coca * Number;
+                Nameozi = Money - Hap;
+                Money = Nameozi;
+                coca -= Number;
+                printf("돈 %d원을 쓰셨습니다.\n\n", Hap);
+                printf("거스름돈 %d원 입니다.\n\n", Nameozi);
+                printf("코카콜라를 맛있게 드십시오.\n\n");
+                printf("코카콜라 재고가 %d개 남았습니다.\n\n", coca);
+            }
+            break;
+
+        case 2:
+            if (pepsi == 0) {
+                printf("펩시콜라 재고가 부족합니다.\n");
+                continue;
+            }
+            else if ((Pepsi * Number) > Money) {
+                printf("돈이 부족합니다.\n");
+                continue;
+            }
+            else {
+                Hap = Pepsi * Number;
+                Nameozi = Money - Hap;
+                Money = Nameozi;
+                pepsi -= Number;
+                printf("돈 %d원을 쓰셨습니다.\n\n", Hap);
+                printf("거스름돈 %d원 입니다.\n\n", Nameozi);
+                printf("펩시콜라를 맛있게 드십시오.\n\n");
+                printf("펩시콜라 재고가 %d개 남았습니다.\n\n", pepsi);
+            }
+            break;
+
+        case 3:
+            if (fanta == 0) {
+                printf("환타 재고가 부족합니다.\n");
+                continue;
+            }
+            if ((Fanta * Number) > Money) {
+                printf("돈이 부족합니다.\n");
+                continue;
+            }
+            else {
+                Hap = Fanta * Number;
+                Nameozi = Money - Hap;
+                Money = Nameozi;
+                fanta -= Number;
+                printf("돈 %d원을 쓰셨습니다.\n\n", Hap);
+                printf("거스름돈 %d원 입니다.\n\n", Nameozi);
+                printf("환타를 맛있게 드십시오.\n\n");
+                printf("환타 재고가 %d개 남았습니다.\n\n", fanta);
+            }
+            break;
+
+        case 4:
+            if (hotsix == 0) {
+                printf("핫식스 재고가 부족합니다.\n");
+                continue;
+            }
+            if ((Hotsix * Number) > Money) {
+
+                printf("돈이 부족합니다.\n");
+
+                continue;
+
+            }
+
+            else {
+                Hap = Hotsix * Number;
+                Nameozi = Money - Hap;
+                Money = Nameozi;
+                hotsix -= Number;
+                printf("돈 %d원을 쓰셨습니다.\n\n", Hap);
+                printf("거스름돈 %d원 입니다.\n\n", Nameozi);
+                printf("핫식스를 맛있게 드십시오.\n\n");
+                printf("핫식스 재고가 %d개 남았습니다.\n\n", hotsix);
+            }
+            break;
+
+        case 5:
+            if (monster == 0) {
+                printf("몬스터 재고가 부족합니다.\n");
+                continue;
+            }
+            if ((Monster * Number) > Money) {
+                printf("돈이 부족합니다.\n");
+                continue;
+            }
+            else {
+                Hap = Monster * Number;
+                Nameozi = Money - Hap;
+                Money = Nameozi;
+                monster -= Number;
+                printf("돈 %d원을 쓰셨습니다.\n\n", Hap);
+                printf("거스름돈 %d원 입니다.\n\n", Nameozi);
+                printf("몬스터를 맛있게 드십시오.\n\n");
+                printf("몬스터 재고가 %d개 남았습니다.\n\n", monster);
+            }
+            break;
+            
+        case 6:
+            if (pocari == 0) {
+                printf("포카리스웨트 재고가 부족합니다.\n");
+                continue;
+            }
+            if ((Pocari * Number) > Money) {
+                printf("돈이 부족합니다.\n");
+                continue;
+            }
+            else {
+                Hap = Pocari * Number;
+                Nameozi = Money - Hap;
+                Money = Nameozi;
+                pocari -= Number;
+                printf("돈 %d원을 쓰셨습니다.\n\n", Hap);
+                printf("거스름돈 %d원 입니다.\n\n", Nameozi);
+                printf("포카리스웨트를 맛있게 드십시오.\n\n");
+                printf("포카리스웨트 재고가 %d개 남았습니다.\n\n", pocari);
+            }
+            break;
+            
+        case 7:
+            if (power == 0) {
+                printf("파워에이드 재고가 부족합니다.\n");
+                continue;
+            }
+            if ((Power * Number) > Money) {
+                printf("돈이 부족합니다.\n");
+                continue;
+            }
+            else {
+                Hap = Power * Number;
+                Nameozi = Money - Hap;
+                Money = Nameozi;
+                power -= Number;
+                printf("돈 %d원을 쓰셨습니다.\n\n", Hap);
+                printf("거스름돈 %d원 입니다.\n\n", Nameozi);
+                printf("파워에이드를 맛있게 드십시오.\n\n");
+                printf("파워에이드 재고가 %d개 남았습니다.\n\n", power);
+            }
+            break;  
+        }
+    Jong:
+        int yn;
+        fflush(stdin);   //입력 버퍼를 지우는 함수
+        printf("자판기를 종료하시겠습니까?\n");
+        printf("(종료 하시려면 1 , 종료 하지 않으시려면 2를 입력하세요)>> ");
+        scanf("%d", &yn);   //사용자로부터 y/n을 입력받는다.
+        printf("\n");
+
+        if (yn == 1) {
+            printf("자판기 종료합니다.\n");
+            break;
+        }
+        else if (yn == 2) {
+            printf("자판기 계속 운영합니다.\n");
+            continue;
+        }
+        else {
+            printf("잘못 입력하셨습니다.\n");
+            goto Jong;
+        }
+    }
+    return 0;
+ }
+
+int main()
+{
+    MainMenu();
+    Menu();
+    return 0;
+}
